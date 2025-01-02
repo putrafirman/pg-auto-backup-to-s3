@@ -22,7 +22,7 @@ for db in "${DBS[@]}"; do
 
     echo "==> backing up $db..."
 
-    pg_dump --dbname=$PG_PATH/$db > /tmp/"$FILENAME".dump
+    pg_dump --exclude-schema="extensions|graphql|graphql_public|net|pgbouncer|pgsodium|pgsodium_masks|realtime|supabase_functions|pg_toast|pgcatalog|pg*|information_schema" --dbname=$PG_PATH/$db > /tmp/"$FILENAME".dump
 
     # Copy to S3
     aws s3 cp /tmp/"$FILENAME".dump s3://$S3_PATH/"$FILENAME".dump
