@@ -39,6 +39,19 @@ docker run \
   pg-dump-to-s3-v1
 ```
 
+or if you want to use the latest image from docker hub:
+```bash
+sudo docker run \
+  -e AWS_ACCESS_KEY_ID=your_access_key \
+  -e AWS_SECRET_ACCESS_KEY=your_secret_key \
+  -e AWS_ENDPOINT_URL=your_s3_endpoint \
+  -e S3_PATH=your/backup/path \
+  -e DELETE_AFTER="7 days" \
+  -e PG_DATABASES=database1,database2 \
+  -e PG_PATH=postgresql://user:password@host:port \
+  putrafirman/pg-auto-backup-to-s3:latest
+```
+
 ## Environment Variables
 
 | Variable | Description | Example |
